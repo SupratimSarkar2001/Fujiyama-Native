@@ -1,37 +1,74 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import React, { useEffect } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './pages/Home';
+import Details from './pages/Details';
+import ProductList from './pages/ProductList';
+import Login from './pages/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const Stack = createNativeStackNavigator();
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+const Layout = () => {
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+  const [tokenPresent, setTokenPresent] = React.useState(false);
+  const getToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      if (value !== null) {
+        setTokenPresent(true);
+      }
+    } catch (error) {
+      console.error('Error retrieving data: ', error);
     }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
   }
 
+  useEffect(() => {
+    getToken();
+  }, [])
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator initialRouteName={tokenPresent ? 'Home' : 'Login'}>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Details"
+              component={Details}
+              options={{
+                title: 'Details - Fujiyama ⛰️ Products',
+                headerStyle: {
+                  backgroundColor: '#e05f02',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            />
+            <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ headerShown: false }}
+            />
+            <Stack.Screen
+            name="ProductList"
+            component={ProductList}
+            options={{
+              title: 'All Products of This Category - Fujiyama ⛰️',
+              headerStyle: {
+                backgroundColor: '#e05f02',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+            />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default Layout;
