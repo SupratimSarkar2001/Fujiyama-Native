@@ -1,50 +1,22 @@
-# Welcome to your Expo app 👋
+# Fujiyama
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Fujiyama is a React Native project featuring a modern UI design, stack navigation, and haptic feedback integration. 
 
-## Get started
+## Features
+- **Modern UI**: Fujiyama boasts a sleek and contemporary user interface designed to enhance user experience.
+- **Stack Navigation**: The project utilizes stack navigation to manage navigation flow, providing users with intuitive navigation between screens.
+- **Haptic Feedback**: Integration of haptic feedback enhances the user interaction by providing subtle tactile feedback for certain actions.
 
-1. Install dependencies
+## Getting Started
+To get started with Fujiyama, follow these steps:
 
-   ```bash
-   npm install
-   ```
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Run `npm install` or `yarn install` to install dependencies.
+4. Ensure you have a development environment set up for React Native.
+5. Run `react-native run-android` or `react-native run-ios` to start the application on your device or emulator.
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Dependencies
+- React Native
+- React Navigation
+- Other dependencies as specified in the `package.json` file.
